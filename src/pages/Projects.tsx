@@ -1,8 +1,6 @@
-// import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Github, X } from 'lucide-react';
+import { ExternalLink, Github } from 'lucide-react';
 import { useState } from 'react';
-import { useOutletContext } from 'react-router-dom';
 
 interface Project {
   title: string;
@@ -15,9 +13,6 @@ interface Project {
   duration: string;
 }
 
-interface OutletContextType {
-  setHideFooter: (value: boolean) => void;
-}
 
 const projects: Project[] = [
   {
@@ -78,175 +73,126 @@ const projects: Project[] = [
 ];
 
 const Projects = () => {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const { setHideFooter } = useOutletContext<OutletContextType>();
-
-  const handleProjectClick = (project: Project) => {
-    setSelectedProject(project);
-    setHideFooter(true);
-  };
-
-  const handleCloseModal = () => {
-    setSelectedProject(null);
-    setHideFooter(false);
-  };
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <div className="container mx-auto px-4 py-16">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="max-w-6xl mx-auto"
-      >
-        <h2 className="text-3xl font-bold mb-8 flex items-center gap-3 text-gray-900">
-          <Github className="text-blue-600" />
-          My Projects
-        </h2>
+    <div className="min-h-screen bg-[--base] px-4 py-16">
+      <div className="container mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="max-w-7xl mx-auto"
+        >
+          <h2 className="text-3xl font-bold mb-12 flex items-center gap-3 text-[--text]">
+            <Github className="text-[--blue]" />
+            My Projects
+          </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <ProjectCard 
-              key={index} 
-              project={project} 
-              index={index}
-              onClick={() => handleProjectClick(project)}
-            />
-          ))}
-        </div>
-      </motion.div>
-
-      <AnimatePresence>
-        {selectedProject && (
-          <ProjectModal 
-            project={selectedProject} 
-            onClose={handleCloseModal} 
-          />
-        )}
-      </AnimatePresence>
-    </div>
-  );
-};
-
-const ProjectCard = ({ project, index, onClick }: { project: Project; index: number; onClick: () => void }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ delay: index * 0.1 }}
-    className="group bg-gradient-to-br from-white via-white to-blue-50/50 backdrop-blur-sm rounded-xl overflow-hidden cursor-pointer transition-all duration-300 shadow-md hover:shadow-xl border border-blue-100/50"
-    onClick={onClick}
-  >
-    <div className="relative h-48 overflow-hidden">
-      <img
-        src={project.image}
-        alt={project.title}
-        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-      />
-      {project.inProgress && (
-        <div className="absolute top-4 right-4 bg-blue-600 text-white px-4 py-1.5 rounded-full text-sm font-medium">
-          In Progress
-        </div>
-      )}
-    </div>
-    <div className="p-8">
-      <h3 className="text-xl font-semibold text-gray-900 group-hover:text-blue-700 transition-colors mb-6">
-        {project.title}
-      </h3>
-      <div className="flex flex-wrap gap-2">
-        {project.tags.slice(0, 3).map((tag, i) => (
-          <span 
-            key={i} 
-            className="px-4 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm font-medium hover:bg-blue-100 hover:text-blue-800 transition-all duration-300 cursor-default"
-          >
-            {tag}
-          </span>
-        ))}
-      </div>
-    </div>
-  </motion.div>
-);
-
-const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => void }) => {
-  const handleLinkClick = (url: string, e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    window.open(url, '_blank', 'noopener,noreferrer');
-  };
-
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[9999]"
-    >
-      <div 
-        className="fixed inset-0 bg-black/60 backdrop-blur-sm" 
-        onClick={onClose}
-      />
-
-      <div className="fixed inset-0 overflow-y-auto">
-        <div className="flex min-h-full items-center justify-center p-4">
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
-            className="relative bg-gradient-to-br from-white via-white to-blue-50/50 backdrop-blur-sm rounded-xl max-w-2xl w-full shadow-xl border border-blue-100/50"
-            onClick={e => e.stopPropagation()}
-          >
-            <div className="relative h-64">
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-full object-cover rounded-t-xl"
-              />
-              <button
-                onClick={onClose}
-                className="absolute top-4 right-4 bg-white/90 hover:bg-white p-2 rounded-full text-gray-600 hover:text-gray-900 transition-colors shadow-lg"
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {projects.map((project, index) => (
+              <motion.div
+                key={index}
+                className="relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 bg-[--surface0]"
+                onHoverStart={() => setHoveredIndex(index)}
+                onHoverEnd={() => setHoveredIndex(null)}
+                onClick={() => project.github && window.open(project.github, '_blank')}
               >
-                <X size={20} />
-              </button>
-            </div>
-            <div className="p-8">
-              <div className="flex justify-between items-start mb-6">
-                <h3 className="text-2xl font-bold text-gray-900">{project.title}</h3>
-                <span className="text-blue-600 font-medium">{project.duration}</span>
-              </div>
-              <p className="text-gray-700 leading-relaxed mb-6">{project.description}</p>
-              <div className="flex flex-wrap gap-2 mb-6">
-                {project.tags.map((tag, i) => (
-                  <span 
-                    key={i} 
-                    className="px-4 py-1.5 bg-blue-50 text-blue-700 rounded-full text-sm font-medium hover:bg-blue-100 hover:text-blue-800 transition-all duration-300 cursor-default"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              {project.github && (
-                <div className="flex gap-4">
-                  <button
-                    className="flex items-center gap-2 text-gray-700 hover:text-blue-700 transition-colors font-medium"
-                    onClick={(e) => handleLinkClick(project.github!, e)}
-                  >
-                    <Github size={20} />
-                    <span>View Code</span>
-                  </button>
-                  {project.demo && (
-                    <button
-                      className="flex items-center gap-2 text-gray-700 hover:text-blue-700 transition-colors font-medium"
-                      onClick={(e) => handleLinkClick(project.demo!, e)}
-                    >
-                      <ExternalLink size={20} />
-                      <span>Live Demo</span>
-                    </button>
-                  )}
+                {/* Image Container */}
+                <div className="relative w-full h-48 overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  
+                  {/* Overlay on Hover */}
+                  <AnimatePresence>
+                    {hoveredIndex === index && (
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute inset-0 bg-black/80 flex flex-col justify-center items-center p-4 text-center"
+                      >
+                        <motion.h3
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 10 }}
+                          transition={{ delay: 0.1 }}
+                          className="text-xl font-bold text-white mb-4"
+                        >
+                          {project.title}
+                        </motion.h3>
+                        <motion.p
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 10 }}
+                          transition={{ delay: 0.2 }}
+                          className="text-gray-200 text-sm leading-relaxed mb-6"
+                        >
+                          {project.description}
+                        </motion.p>
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 10 }}
+                          transition={{ delay: 0.3 }}
+                          className="flex gap-4"
+                        >
+                          {project.github && (
+                            <a
+                              href={project.github}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center gap-2 text-white hover:text-[--blue] transition-colors"
+                              onClick={e => e.stopPropagation()}
+                            >
+                              <Github className="w-5 h-5" />
+                              <span>Code</span>
+                            </a>
+                          )}
+                          {project.demo && (
+                            <a
+                              href={project.demo}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-center gap-2 text-white hover:text-[--blue] transition-colors"
+                              onClick={e => e.stopPropagation()}
+                            >
+                              <ExternalLink className="w-5 h-5" />
+                              <span>Demo</span>
+                            </a>
+                          )}
+                        </motion.div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
-              )}
-            </div>
-          </motion.div>
-        </div>
+
+                {/* Project Info (Always Visible) */}
+                <div className="p-4">
+                  <h3 className="text-lg font-semibold text-[--text] mb-2">
+                    {project.title}
+                  </h3>
+                  <div className="flex flex-wrap gap-2 mt-2">
+                    {project.tags.map((tag, tagIndex) => (
+                      <span
+                        key={tagIndex}
+                        className="px-2 py-1 text-xs rounded-md bg-[--surface1] text-[--text]"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 

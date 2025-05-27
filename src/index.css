@@ -27,7 +27,61 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-    --radius: 0.5rem
+    --radius: 0.5rem;
+
+    /* Catppuccin Theme Colors */
+    --bg-color: #EFF1F5;
+    --sbg1-color: #CCD0DA;
+    --sbg2-color: #bcc0cc;
+    --text-color: #11111B;
+    --button-color: #11111B;
+    --button-text-color: #EFF1F5;
+
+    /* Catppuccin Accent Colors */
+    --rosewater-color: #f4dbd6;
+    --flamingo-color: #f0c6c6;
+    --pink-color: #f5bde6;
+    --mauve-color: #c6a0f6;
+    --red-color: #ed8796;
+    --maroon-color: #ee99a0;
+    --peach-color: #f5a97f;
+    --yellow-color: #eed49f;
+    --green-color: #a6da95;
+    --teal-color: #8bd5ca;
+    --sky-color: #91d7e3;
+    --sapphire-color: #7dc4e4;
+    --blue-color: #8aadf4;
+    --lavender-color: #b7bdf8;
+
+    /* Catppuccin Latte (Light) Theme Colors */
+    --base: #eff1f5;
+    --crust: #dce0e8;
+    --mantle: #e6e9ef;
+    --surface0: #ccd0da;
+    --surface1: #bcc0cc;
+    --surface2: #acb0be;
+    --text: #4c4f69;
+    --subtext0: #6c6f85;
+    --subtext1: #5c5f77;
+    --overlay0: #7c7f93;
+    --overlay1: #8c8fa1;
+    --overlay2: #9ca0b0;
+
+    /* Catppuccin Accent Colors */
+    --rosewater: #dc8a78;
+    --flamingo: #dd7878;
+    --pink: #ea76cb;
+    --mauve: #8839ef;
+    --red: #d20f39;
+    --maroon: #e64553;
+    --peach: #fe640b;
+    --yellow: #df8e1d;
+    --green: #40a02b;
+    --teal: #179299;
+    --sky: #04a5e5;
+    --sapphire: #209fb5;
+    --blue: #1e66f5;
+    --lavender: #7287fd;
   }
   .dark {
     --background: 0 0% 3.9%;
@@ -53,8 +107,60 @@
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%
+    --chart-5: 340 75% 55%;
+
+    /* Catppuccin Dark Theme Overrides */
+    --bg-color: #1e1e2e;
+    --sbg1-color: #313244;
+    --sbg2-color: #45475a;
+    --text-color: #cdd6f4;
+    --button-color: #11111b;
+    --button-text-color: #EFF1F5;
+
+    /* Catppuccin Mocha (Dark) Theme Colors */
+    --base: #1e1e2e;
+    --crust: #11111b;
+    --mantle: #181825;
+    --surface0: #313244;
+    --surface1: #45475a;
+    --surface2: #585b70;
+    --text: #cdd6f4;
+    --subtext0: #a6adc8;
+    --subtext1: #bac2de;
+    --overlay0: #6c7086;
+    --overlay1: #7f849c;
+    --overlay2: #9399b2;
+
+    /* Catppuccin Dark Accent Colors */
+    --rosewater: #f5e0dc;
+    --flamingo: #f2cdcd;
+    --pink: #f5c2e7;
+    --mauve: #cba6f7;
+    --red: #f38ba8;
+    --maroon: #eba0ac;
+    --peach: #fab387;
+    --yellow: #f9e2af;
+    --green: #a6e3a1;
+    --teal: #94e2d5;
+    --sky: #89dceb;
+    --sapphire: #74c7ec;
+    --blue: #89b4fa;
+    --lavender: #b4befe;
   }
+
+  /* Typography */
+  @font-face {
+    font-family: 'PressStart2P';
+    src: url('/fonts/PressStart2P-Regular.woff');
+  }
+
+  @font-face {
+    font-family: 'Aldrich';
+    src: url('/fonts/aldrichrusbydaymarius.woff');
+  }
+
+  /* Import Rubik Doodle Shadow */
+  @import url('https://fonts.googleapis.com/css2?family=Rubik+Doodle+Shadow&display=swap');
 }
 @layer base {
   * {
@@ -106,7 +212,209 @@
   }
 }
 
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes scroll-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
 .glass-effect {
   backdrop-filter: blur(10px);
   background: rgba(255, 255, 255, 0.8);
+}
+
+@layer components {
+  .box {
+    @apply bg-[--surface0] p-[40px_20px_20px] rounded-[15px] gap-[30px] border border-[--surface1];
+  }
+
+  .box-title {
+    @apply bg-[--surface1] rounded-[0.6vw];
+  }
+
+  .glass-effect {
+    @apply backdrop-blur-[10px] bg-[--base]/80;
+  }
+
+  .box-title p {
+    @apply font-['Rubik_Doodle_Shadow'] text-[1.4vw];
+  }
+
+  .stat .count {
+    @apply font-['Rubik_Doodle_Shadow'] text-[5.3vw];
+  }
+
+  .stat .label {
+    @apply font-aldrich text-[1vw];
+  }
+
+  .text {
+    @apply font-aldrich text-[1.1vw] leading-relaxed text-[--text-color];
+  }
+}
+@layer utilities {
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+  
+  @media (max-width: 1024px) {
+    .project-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .project-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+
+  .project-image {
+    height: 12rem; /* 192px */
+    object-fit: cover;
+    width: 100%;
+  }
+  
+  .project-card {
+    @apply bg-[--surface0] rounded-lg shadow-md hover:shadow-xl transition-all duration-300;
+  }
+  
+  .project-tag {
+    @apply px-2 py-1 text-xs rounded-md bg-[--surface1] text-[--text];
+  }
+
+  .project-card {
+    @apply relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300;
+  }
+
+  .project-overlay {
+    @apply absolute inset-0 bg-black/80 flex flex-col justify-center items-center p-6 opacity-0 transition-opacity duration-300;
+  }
+
+  .project-card:hover .project-overlay {
+    @apply opacity-100;
+  }
+
+  /* Scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Scroll reveal animations */
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(75px);
+    transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+    will-change: transform, opacity;
+  }
+
+  .scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Scroll trigger */
+  .scroll-trigger {
+    will-change: transform, opacity;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--surface0);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--surface1);
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--surface2);
+  }
+
+  /* Smooth scroll container */
+  .smooth-scroll {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Hide scrollbar for smooth scroll container */
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .font-pressStart {
+    font-family: 'PressStart2P', cursive;
+  }
+
+  .nav-btn-hover {
+    @apply hover:bg-[--surface1] transition-colors;
+  }
+
+  .nav-btn-icon {
+    @apply w-[40px] h-[40px] md:w-[32px] md:h-[32px];
+  }
+
+  .nav-btn-title {
+    @apply font-pixel text-[18px] md:text-[14px] sm:text-[12px] m-0;
+  }
+
+  .nav-btn-description {
+    @apply text-[15px] md:text-[12px] font-aldrich m-0;
+  }
+}
+
+/* Media query utilities */
+@media (max-width: 1315px) {
+  .home-page {
+    flex-direction: column;
+    gap: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-page {
+    gap: 30px;
+    padding: 15px;
+  }
+}
+
+/* Add new keyframes for scroll animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(75px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-75px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
