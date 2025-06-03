@@ -1,4 +1,5 @@
-import { Moon, Sun } from 'lucide-react';
+import { SunIcon } from './icons/SunIcon';
+import { MoonIcon } from './icons/MoonIcon';
 import { useTheme } from './ThemeProvider';
 
 export function ThemeToggle() {
@@ -7,12 +8,12 @@ export function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="p-2 rounded-lg bg-gray-200 dark:bg-gray-800 transition-colors"
+      className="p-2 rounded-lg  transition-colors"
     >
       {theme === 'light' ? (
-        <Moon className="w-7 h-7 text-gray-800 dark:text-gray-200" />
+        <MoonIcon />
       ) : (
-        <Sun className="w-7 h-7 text-gray-800 dark:text-gray-200" />
+        <SunIcon />
       )}
     </button>
   );

@@ -1,26 +1,13 @@
 export interface CodingProfile {
   platform: string;
   link: string;
-  icon: string;
+  badge: string;
 }
 
-export interface Experience {
+export interface SkillCategory {
   title: string;
-  company: string;
-  duration: string;
-  location: string;
-  highlights: string[];
-  technologies: string[];
-}
-
-export interface Education {
-  period: string;
-  degree: string;
-  specialization: string;
-  institution: string;
-  location: string;
-  grade: string;
-  description: string;
-  achievements: string[];
-  learnings: string[];
+  skills: Array<{
+    id: string;
+    title: string;
+  }>;
 }

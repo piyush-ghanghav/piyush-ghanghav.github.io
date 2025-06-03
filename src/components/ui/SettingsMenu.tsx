@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 
 import { Link } from 'react-router-dom';
 import { ThemeToggle } from '../ThemeToggle';
-import { HomeIcon } from '../HomeIcon';
+import { HomeIcon } from '../icons/HomeIcon';
 
 const SettingsMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,7 +27,7 @@ const SettingsMenu = () => {
       >
         <ChevronDown 
           className={`
-            w-full h-full text-[--text] 
+            w-full h-full text-[--text-color] 
             transition-transform duration-300
             ${isOpen ? 'rotate-180' : ''}
           `}
@@ -36,12 +35,18 @@ const SettingsMenu = () => {
       </button>
 
       {/* Settings Buttons */}
-      <AnimatePresence>
+              
+                          {/* Theme Toggle Container */}
+                          <div className="
+                            w-[50px] h-[50px] 
+                            bg-[--surface1] rounded-[10px]
+                            flex items-center justify-center
+                            hover:bg-[--surface2] transition-colors
+                          ">
+                            <ThemeToggle />
+                          </div>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
+          <div
             className="flex flex-col gap-[5px] w-full px-[5px]"
           >
             {/* Home Button */}
@@ -56,19 +61,8 @@ const SettingsMenu = () => {
             >
               <HomeIcon/>
             </Link>
-
-            {/* Theme Toggle Container */}
-            <div className="
-              w-[50px] h-[50px] 
-              bg-[--surface1] rounded-[10px]
-              flex items-center justify-center
-              hover:bg-[--surface2] transition-colors
-            ">
-              <ThemeToggle />
-            </div>
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
     </div>
   );
 };

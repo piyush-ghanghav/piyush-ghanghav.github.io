@@ -1,55 +1,49 @@
 import { motion } from "framer-motion";
-import {
-  ExternalLink,
-  Rocket, 
-  Sparkles,
-  FileText,
-  UserCircle2, 
-  Blocks, 
+import { 
+  Sparkles, 
   Newspaper, 
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import Divider from "@/components/ui/Divider";
+import { AboutIcon } from "@/components/icons/AboutIcon";
+import { GithubIcon } from "@/components/icons/GithubIcon";
+import { ExternalLinkIcon } from "@/components/icons/ExternalLinkIcon";
+import { RocketIcon } from "@/components/icons/RocketIcon";
+import { PortfolioIcon } from "@/components/icons/PortfolioIcon";
+import { ResumeIcon } from "@/components/icons/ResumeIcon";
 
 const Home = () => {
   return (
-    <div className="min-h-screen w-full flex justify-center items-center gap-[80px] p-5 bg-[--base] text-[--text] md:flex-row flex-col font-inter">
+    <div className="min-h-screen w-full flex justify-center items-center gap-[80px] p-5 bg-[--base]  md:flex-row flex-col">
       {/* Left Section */}
       <div className="w-full max-w-[700px] space-y-6">
         {/* Header Section */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+        <div
           className="flex items-center gap-4"
         >
-          <Rocket className="w-10 h-10 text-[--blue] md:w-8 md:h-8 hover:rotate-12 transition-transform duration-300" />
-          <h1 className="font-pixel text-4xl m-0 md:text-3xl sm:text-2xl text-[--text]">
+          <RocketIcon />
+          <h1 className="font-pixel font-bold text-4xl m-0 md:text-3xl sm:text-2xl text-[--text-color]">
             Hello! I'm <span className="text-[--blue]">Piyush</span>
           </h1>
-        </motion.div>
+        </div>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="font-aldrich text-lg my-3 md:text-base sm:text-sm text-[--text] font-medium tracking-wide"
+        <p
+
+          className="font-aldrich text-lg my-3 text-[--text-color]  tracking-wide"
+          
         >
           Computer engineer here - I enjoy tackling coding challenges and
           building things that work. What's on your mind?
-        </motion.p>
+        </p>
 
-        {/* Sparkles Section */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
+        <div
           className="inline-flex items-center px-3 py-2 rounded-lg gap-2 bg-gradient-to-r from-[--rosewater] via-[--blue] to-[--lavender] hover:shadow-md transition-all duration-300"
         >
           <Sparkles className="w-6 h-6 text-white" />
           <p className="font-pixel text-xs text-white sm:text-[15px]">
             An absolute learner
           </p>
-        </motion.div>
+        </div>
 
         <Divider className="my-4" />
         <NavigationButtons />
@@ -67,14 +61,14 @@ const Home = () => {
           className="w-full aspect-square relative rounded-[10px] overflow-hidden"
         >
           <img
-            src="/parallel_programming.png"
+            src="/pfp.png"
             alt="Profile"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-top"
           />
         </motion.div>
 
         <Link to="/Piyush_Ghanghav_Resume.pdf" className={buttonStyles.resume}>
-          <FileText className="w-5 h-5" />
+          <ResumeIcon />
           <span className="truncate">Resume</span>
         </Link>
       </div>
@@ -87,13 +81,7 @@ const NavigationButtons = () => {
     {
       to: "/about",
       icon: (
-        <div className="relative group">
-          <UserCircle2 
-            size={32} 
-            className="text-[--sapphire] transition-all duration-300 " 
-          />
-          <div className="absolute -inset-1 bg-[--sapphire]/20 rounded-lg blur opacity-0    " />
-        </div>
+          <AboutIcon/>
       ),
       title: "About Me",
       description: "Meet your future developer",
@@ -101,13 +89,7 @@ const NavigationButtons = () => {
     {
       to: "/projects",
       icon: (
-        <div className="relative group">
-          <Blocks 
-            size={32} 
-            className="text-[--teal] transition-all duration-300 " 
-          />
-          <div className="absolute -inset-1 bg-[--teal]/20 rounded-lg blur opacity-0  " />
-        </div>
+          <PortfolioIcon />
       ),
       title: "Portfolio",
       description: "Works that speak for themselves",
@@ -115,13 +97,7 @@ const NavigationButtons = () => {
     {
       to: "/articles",
       icon: (
-        <div className="relative group">
-          <Newspaper 
-            size={32} 
-            className="text-[--mauve] transition-all duration-300 " 
-          />
-          <div className="absolute -inset-1 bg-[--mauve]/20 rounded-lg blur opacity-0  " />
-        </div>
+          <Newspaper/> 
       ),
       title: "Articles",
       description: "Knowledge and inspiration",
@@ -138,25 +114,16 @@ const NavigationButtons = () => {
 };
 
 const SocialLinks = () => {
-  // Invert theme for better contrast
-  const theme = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
-  
   const socialItems = [
     {
       href: "https://github.com/piyush-ghanghav",
-      icon: (
-        <img 
-          src={`https://skillicons.dev/icons?i=github&theme=${theme}`}
-          alt="GitHub"
-          className="w-10 h-10 transition-transform duration-300 hover:scale-110"
-        />
-      ),
+      icon: <GithubIcon />,
     },
     {
       href: "https://linkedin.com/in/piyush-ghanghav",
       icon: (
         <img 
-          src={`https://skillicons.dev/icons?i=linkedin&theme=${theme}`}
+          src={`https://skillicons.dev/icons?i=linkedin&theme=light`}
           alt="LinkedIn"
           className="w-10 h-10 transition-transform duration-300 hover:scale-110"
         />
@@ -207,18 +174,19 @@ const NavButton = ({ to, icon, title, description }: NavButtonProps) => (
         <p className={buttonStyles.navDescription}>{description}</p>
       </div>
     </div>
-    <div className="text-[--text] transition-transform group-hover:translate-x-1">
-      <ExternalLink className="w-6 h-6 sm:w-[24px] sm:h-[24px]" />
+    <div className="text-[--text-color] transition-transform group-hover:translate-x-1">
+      <ExternalLinkIcon />
     </div>
   </Link>
 );
 
+// Update SocialButton to handle hover effects
 const SocialButton = ({ href, icon }: SocialButtonProps) => (
   <a
     href={href}
     target="_blank"
     rel="noopener noreferrer"
-    className="transition-transform hover:-translate-y-1"
+    className="group transition-transform hover:-translate-y-1"
   >
     {icon}
   </a>
@@ -241,18 +209,18 @@ const buttonStyles = {
   `,
   navIcon: `
     w-[48px] h-[48px] md:w-[40px] md:h-[40px] sm:w-[32px] sm:h-[32px]
-    text-[--text] flex items-center justify-center
+    text-[--text-color] flex items-center justify-center
   `,
   navText: `
     flex flex-col gap-2
   `,
   navTitle: `
     font-pixel text-[24px] md:text-[20px] sm:text-[16px]
-    text-[--text] m-0 leading-tight
+    text-[--text-color] m-0 leading-tight
   `,
   navDescription: `
     text-[16px] md:text-[14px] sm:text-[12px]
-    text-[--text] m-0 
+    text-[--text-color] m-0 
     font-aldrich
   `,
   social: `

@@ -1,114 +1,123 @@
-import { motion } from "framer-motion";
-import { Code2, Globe, Database, Wrench } from "lucide-react";
-import SectionHeader from "@/components/ui/SectionHeader";
-import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { SkillCard } from "./SkillCard";
+import { ProfileBadge } from "./ProfileBadge";
+import type { CodingProfile, SkillCategory } from "./types";
 
-interface Skill {
-  name: string;
-  icon: string;
-}
-
-interface SkillCategory {
-  title: string;
-  icon: React.ReactNode;
-  skills: Skill[];
-}
+const codingProfiles: CodingProfile[] = [
+  {
+    platform: "LeetCode",
+    link: "https://leetcode.com/piyushghanghav",
+    badge:
+      "https://img.shields.io/badge/-LeetCode-FFA116?style=flat-square&logo=LeetCode&logoColor=black",
+  },
+  {
+    platform: "GeeksforGeeks",
+    link: "https://www.geeksforgeeks.org/user/piyushghanghav10/",
+    badge:
+      "https://img.shields.io/badge/-GeeksforGeeks-2F8D46?style=flat-square&logo=GeeksforGeeks&logoColor=white",
+  },
+  {
+    platform: "HackerRank",
+    link: "https://www.hackerrank.com/piyushghanghav",
+    badge:
+      "https://img.shields.io/badge/-Hackerrank-00EA64?style=flat-square&logo=HackerRank&logoColor=white",
+  },
+  {
+    platform: "CodeChef",
+    link: "https://www.codechef.com/users/piyushghanghav",
+    badge:
+      "https://img.shields.io/badge/-CodeChef-5B4638?style=flat-square&logo=CodeChef&logoColor=white",
+  },
+];
 
 const skillCategories: SkillCategory[] = [
   {
-    title: "Programming Languages",
-    icon: <Code2 className="text-[--blue]" />,
+    title: "Development",
     skills: [
-      { name: "Python", icon: "python" },
-      { name: "JavaScript", icon: "javascript" },
-      { name: "TypeScript", icon: "typescript" },
-      { name: "Java", icon: "java" },
-      { name: "C++", icon: "cpp" },
+      { id: "javascript", title: "JavaScript" },
+      { id: "typescript", title: "TypeScript" },
+      { id: "python", title: "Python" },
+      { id: "java", title: "Java" },
+      { id: "cpp", title: "C++" },
+      { id: "react", title: "React.js" },
+      { id: "nodejs", title: "Node.js" },
+      { id: "express", title: "Express.js" },
+      { id: "html", title: "HTML5" },
+      { id: "css", title: "CSS3" },
+      { id: "tailwind", title: "Tailwind CSS" },
     ],
   },
   {
-    title: "Web Technologies",
-    icon: <Globe className="text-[--blue]" />,
+    title: "Database & Cloud",
     skills: [
-      { name: "React", icon: "react" },
-      { name: "Node.js", icon: "nodejs" },
-      { name: "Express", icon: "express" },
-      { name: "HTML5", icon: "html" },
-      { name: "CSS3", icon: "css" },
-      { name: "TailwindCSS", icon: "tailwind" },
+      { id: "mongodb", title: "MongoDB" },
+      { id: "postgresql", title: "PostgreSQL" },
+      { id: "mysql", title: "MySQL" },
+      { id: "aws", title: "AWS" },
+      { id: "docker", title: "Docker" },
+      { id: "kubernetes", title: "Kubernetes" },
     ],
   },
   {
-    title: "Databases",
-    icon: <Database className="text-[--blue]" />,
+    title: "Tools & Others",
     skills: [
-      { name: "MongoDB", icon: "mongodb" },
-      { name: "PostgreSQL", icon: "postgresql" },
-      { name: "MySQL", icon: "mysql" },
-    ],
-  },
-  {
-    title: "Tools & Technologies",
-    icon: <Wrench className="text-[--blue]" />,
-    skills: [
-      { name: "Git", icon: "git" },
-      { name: "Docker", icon: "docker" },
-      { name: "AWS", icon: "aws" },
-      { name: "Linux", icon: "linux" },
+      { id: "git", title: "Git" },
+      { id: "vscode", title: "VS Code" },
+      { id: "postman", title: "Postman" },
+      { id: "linux", title: "Linux" },
+      { id: "tensorflow", title: "TensorFlow" },
+      { id: "pytorch", title: "PyTorch" },
     ],
   },
 ];
 
 export const SkillsSection = () => (
-  <ScrollReveal>
-    <section className="mb-16" id="skills">
-      <SectionHeader icon={Code2} title="Skills" />
-      <div className="grid gap-6">
-        {skillCategories.map((category, index) => (
-          <motion.div
-            key={index}
-            className="bg-[--surface0] p-6 rounded-lg border border-[--surface1]"
+  <section className="mb-16 space-y-12">
+    {/* Skills Container */}
+    <div className="relative bg-[--surface0] p-6 md:p-8 rounded-[15px] border border-[--surface1] pt-6">
+      <div className="space-y-6">
+        {skillCategories.map((category, idx) => (
+          <div
+            key={category.title}
+            className="space-y-4"
           >
-            <div className="space-y-6">
-              <div className="flex items-center gap-3">
-                {category.icon}
-                <h3 className="text-xl font-semibold text-[--text]">
-                  {category.title}
-                </h3>
-              </div>
-
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                {category.skills.map((skill, skillIndex) => (
-                  <motion.div
-                    key={skillIndex}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: skillIndex * 0.1 }}
-                    className="group relative"
-                  >
-                    <div className="flex items-center justify-center p-4 bg-[--surface1] rounded-lg
-                      hover:bg-[--surface2] transition-all duration-300">
-                      <img
-                        src={`https://skillicons.dev/icons?i=${skill.icon}`}
-                        alt={skill.name}
-                        className="w-8 h-8 transition-transform duration-300 group-hover:scale-110"
-                      />
-                    </div>
-                    <div className="absolute inset-x-0 -bottom-8 opacity-0 group-hover:opacity-100 
-                      transition-all duration-200">
-                      <div className="flex justify-center">
-                        <span className="bg-[--surface2] text-[--text] text-sm px-2 py-1 rounded">
-                          {skill.name}
-                        </span>
-                      </div>
-                    </div>
-                  </motion.div>
+            <h3 className="text-xl font-aldrich font-semibold text-[--text]">
+              {category.title}
+            </h3>
+            <div className="relative overflow-hidden">
+              <div
+                className={`flex gap-4 animate-scroll${idx % 2 ? "-reverse" : ""}`}
+                style={{
+                  animation: `scroll${idx % 2 ? "-reverse" : ""} ${30 + idx * 5}s linear infinite`,
+                }}
+              >
+                {[...category.skills, ...category.skills].map((skill, skillIndex) => (
+                  <SkillCard
+                    key={`${skill.id}-${skillIndex}`}
+                    skill={skill}
+                  />
                 ))}
               </div>
+
+              {/* Gradient Overlays */}
+              <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[--surface0] to-transparent pointer-events-none" />
+              <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[--surface0] to-transparent pointer-events-none" />
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
-    </section>
-  </ScrollReveal>
+
+      <div className="border-t border-[--surface1] my-6" />
+
+      {/* Coding Profiles with Tooltips */}
+      <div className="flex flex-wrap items-center justify-center gap-4">
+        {codingProfiles.map((profile, idx) => (
+          <ProfileBadge
+            key={profile.platform}
+            profile={profile}
+            index={idx}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
 );

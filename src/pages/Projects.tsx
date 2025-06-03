@@ -9,10 +9,53 @@ interface Project {
   image: string;
   github?: string;
   demo?: string;
-  inProgress?: boolean;
   duration: string;
+  inProgress?: boolean;
 }
 
+const getBadgeUrl = (tag: string) => {
+  const badges: { [key: string]: string } = {
+    // Frontend
+    'ReactJS': 'https://img.shields.io/badge/-React-61DAFB?style=flat&logo=react&logoColor=black',
+    'TypeScript': 'https://img.shields.io/badge/-TypeScript-3178C6?style=flat&logo=typescript&logoColor=white',
+    'JavaScript': 'https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=gray',
+    'HTML5': 'https://img.shields.io/badge/-HTML5-E34F26?style=flat&logo=html5&logoColor=white',
+    'CSS3': 'https://img.shields.io/badge/-CSS3-1572B6?style=flat&logo=css3&logoColor=white',
+    'TailwindCSS': 'https://img.shields.io/badge/-Tailwind-06B6D4?style=flat&logo=tailwindcss&logoColor=white',
+    'AngularJS': 'https://img.shields.io/badge/Angular-DD0031?logo=angular&logoColor=white',
+    
+    // Backend
+    'NodeJS': 'https://img.shields.io/badge/-Node.js-339933?style=flat&logo=nodedotjs&logoColor=white',
+    'Express': 'https://img.shields.io/badge/-Express-000000?style=flat&logo=express&logoColor=white',
+    'Spring Boot': 'https://img.shields.io/badge/-Spring_Boot-6DB33F?style=flat&logo=springboot&logoColor=white',
+    'JPA': 'https://img.shields.io/badge/-JPA-6DB33F?style=flat&logo=spring&logoColor=white',
+    
+    // Database
+    'MongoDB': 'https://img.shields.io/badge/-MongoDB-47A248?style=flat&logo=mongodb&logoColor=white',
+    'PostgreSQL': 'https://img.shields.io/badge/-PostgreSQL-4169E1?style=flat&logo=postgresql&logoColor=white',
+    'H2': 'https://img.shields.io/badge/H2%20Database-09476B?logo=h2database&logoColor=fff&style=flat',
+    // Languages
+    'Python': 'https://img.shields.io/badge/-Python-3776AB?style=flat&logo=python&logoColor=white',
+    'C++': 'https://img.shields.io/badge/-C++-00599C?style=flat&logo=cplusplus&logoColor=white',
+    
+    // Tools
+    'Socket.IO': 'https://img.shields.io/badge/-Socket.IO-010101?style=flat&logo=socketdotio&logoColor=white',
+    'OpenMP': 'https://img.shields.io/badge/-OpenMP-DD6620?style=flat&logo=openmp&logoColor=white',
+    
+    // AI/ML
+    'Machine Learning': 'https://img.shields.io/badge/-Machine_Learning-FF6F00?style=flat&logo=tensorflow&logoColor=white',
+    'NLP': 'https://img.shields.io/badge/-NLP-3776AB?style=flat&logo=python&logoColor=white',
+    'Data Visualization': 'https://img.shields.io/badge/-Data_Visualization-FF6384?style=flat&logo=chartdotjs&logoColor=white',
+  
+    'GenAI': 'https://img.shields.io/badge/Google%20Gemini-8E75B2?logo=googlegemini&logoColor=fff&style=flat',
+  'NextJS': 'https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white',
+  'Tailwind': 'https://img.shields.io/badge/-Tailwind_CSS-06B6D4?style=flat&logo=tailwindcss&logoColor=white',
+  'Clerk': 'https://img.shields.io/badge/-Clerk-3E5DD3?style=flat&logo=clerk&logoColor=white',
+  'Drizzle ORM': 'https://img.shields.io/badge/-Drizzle-008080?style=flat&logo=drizzle&logoColor=white',
+
+  };
+  return badges[tag] || `https://img.shields.io/badge/-${tag}-gray?style=flat-square`;
+}
 
 const projects: Project[] = [
   {
@@ -76,16 +119,15 @@ const Projects = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <div className="min-h-screen bg-[--base] px-4 py-16">
+    <div className="min-h-screen bg-[--base] px-4 py-8">
       <div className="container mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="max-w-7xl mx-auto"
         >
-          <h2 className="text-3xl font-bold mb-12 flex items-center gap-3 text-[--text]">
-            <Github className="text-[--blue]" />
-            My Projects
+          <h2 className="text-3xl font-extrabold font-orbitron mb-6 flex items-center gap-3 text-[--text-color]">
+            Portfolio
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -98,7 +140,7 @@ const Projects = () => {
                 onClick={() => project.github && window.open(project.github, '_blank')}
               >
                 {/* Image Container */}
-                <div className="relative w-full h-48 overflow-hidden">
+                <div className="relative w-full h-40 overflow-hidden">
                   <img
                     src={project.image}
                     alt={project.title}
@@ -172,11 +214,11 @@ const Projects = () => {
                 </div>
 
                 {/* Project Info (Always Visible) */}
-                <div className="p-4">
-                  <h3 className="text-lg font-semibold text-[--text] mb-2">
+                <div className="p-4 font-aldrich">
+                  <h3 className="text-lg font-semibold text-[--text-color] mb-2">
                     {project.title}
                   </h3>
-                  <div className="flex flex-wrap gap-2 mt-2">
+                  {/* <div className="flex flex-wrap gap-2 mt-2">
                     {project.tags.map((tag, tagIndex) => (
                       <span
                         key={tagIndex}
@@ -184,6 +226,16 @@ const Projects = () => {
                       >
                         {tag}
                       </span>
+                    ))}
+                  </div> */}
+                  <div className="flex flex-wrap gap-2 mt-4">
+                    {project.tags.map((tag) => (
+                      <img
+                        key={tag}
+                        src={getBadgeUrl(tag)}
+                        alt={tag}
+                        className="h-5 transition-transform hover:scale-110"
+                      />
                     ))}
                   </div>
                 </div>

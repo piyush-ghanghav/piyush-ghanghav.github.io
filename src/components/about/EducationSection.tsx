@@ -1,94 +1,71 @@
-import { motion } from "framer-motion";
-import { GraduationCap, Award, MapPin, Star, ChevronRight } from "lucide-react";
-import SectionHeader from "@/components/ui/SectionHeader";
-import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { Award, MapPin, Star, Calendar } from "lucide-react";
 
-interface Education {
-  degree: string;
-  institution: string;
-  period: string;
-  location: string;
-  grade: string;
-  achievements: string[];
-}
-
-const educationData: Education[] = [
+const educationData = [
   {
-    degree: "Bachelor of Technology in Computer Science",
+    degree: "Bachelor of Technology | Computer Engineering",
+    subtitle: "B. Tech Honours | AIML",
     institution: "Sanjivani College of Engineering",
-    period: "2021 - 2025",
-    location: "Kopargaon, Maharashtra",
-    grade: "8.5 CGPA",
-    achievements: [
-      "Elite certification in NPTEL courses",
-      "Published research paper on ML applications",
-      "Full Stack Development with MERN",
-      "Data Structures & Algorithms",
-    ],
+    location: "Kopargaon",
+    period: "2021 – 2025",
+    grade: "GPA: 8.4"
   },
   {
     degree: "Higher Secondary Certificate (HSC)",
-    institution: "Mahavir Junior College",
-    period: "2019 - 2021",
-    location: "Lasalgaon, Maharashtra",
-    grade: "93.83%",
-    achievements: [
-      "Secured 93.83% in Board Examinations",
-      "Advanced Mathematics & Physics",
-      "Analytical Problem Solving",
-    ],
+    institution: "Mahaveer Jain High School",
+    location: "Lasalgaon",
+    period: "2020 – 2021",
+    grade: "Percentage: 93.83%"
+  },
+  {
+    degree: "Secondary School Certificate (SSC)",
+    institution: "Loknete Dattaji Patil Vidyalaya",
+    location: "Lasalgaon",
+    period: "2018 – 2019",
+    grade: "Percentage: 89.20%"
   }
 ];
 
 export const EducationSection = () => (
-  <ScrollReveal>
-    <section className="mb-16" id="education">
-      <SectionHeader icon={GraduationCap} title="Education" />
-      <div className="grid gap-6">
+  <section className="mb-16">
+    <div
+      className="bg-[--surface0] p-8 rounded-2xl border border-[--surface1] shadow-sm"
+    >
+      <div className="space-y-10 ">
         {educationData.map((edu, index) => (
-          <motion.div
+          <div
             key={index}
-            className="bg-[--surface0] p-6 rounded-lg border border-[--surface1] hover:border-[--blue]
-              transition-all duration-300 hover:shadow-lg"
+            className={`${
+              index !== educationData.length - 1 ? "border-b font-inter border-[--surface1] pb-8" : ""
+            }`}
           >
-            <div className="space-y-4">
-              <div className="flex items-start justify-between">
-                <div>
-                  <h3 className="text-xl font-semibold text-[--text]">{edu.degree}</h3>
-                  <p className="text-[--subtext1] mt-1">{edu.institution}</p>
-                </div>
-                <span className="text-[--blue] font-medium">{edu.period}</span>
-              </div>
-              
-              <div className="flex items-center gap-4 text-[--subtext1]">
-                <div className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4" />
-                  <span>{edu.location}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Star className="w-4 h-4" />
-                  <span>{edu.grade}</span>
-                </div>
-              </div>
+            <div className="space-y-2">
+              <h3 className="text-lg  font-semibold text-[--text-color]">{edu.degree}</h3>
+              {edu.subtitle && (
+                <p className="text-sm font-aldrich text-[--blue] font-medium">{edu.subtitle}</p>
+              )}
+            </div>
 
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 text-[--text]">
-                  <Award className="w-4 h-4" />
-                  <span className="font-medium">Key Achievements</span>
-                </div>
-                <ul className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                  {edu.achievements.map((achievement, i) => (
-                    <li key={i} className="flex items-center gap-2 text-[--subtext1]">
-                      <ChevronRight className="w-4 h-4 text-[--blue]" />
-                      <span>{achievement}</span>
-                    </li>
-                  ))}
-                </ul>
+            <div className="flex flex-wrap gap-6 font-aldrich mt-4 text-sm text-[--subtext1]">
+              <div className="flex items-center gap-2">
+                <Award className="w-4 h-4 text-[--institution]" />
+                <span className="font-medium">{edu.institution}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-[--location]" />
+                <span>{edu.location}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Star className="w-4 h-4 text-[--maroon]" />
+                <span>{edu.grade}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Calendar className="w-4 h-4 text-[--period]" />
+                <span>{edu.period}</span>
               </div>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
-    </section>
-  </ScrollReveal>
+    </div>
+  </section>
 );

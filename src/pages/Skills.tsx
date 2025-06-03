@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Code, Terminal, Globe, Database, Wrench } from 'lucide-react';
 import IconCloud from "../components/ui/icon-cloud";

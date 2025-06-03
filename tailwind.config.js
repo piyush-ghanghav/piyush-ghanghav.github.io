@@ -12,6 +12,7 @@ export default {
 		'pressStart': ['PressStart2P', 'cursive'],
         'aldrich': ['Aldrich', 'sans-serif'],
         'rubikDoodle': ['Rubik Doodle Shadow', 'cursive'],
+        orbitron: ['Orbitron', 'sans-serif'],
         },
   		borderRadius: {
   			lg: 'var(--radius)',
