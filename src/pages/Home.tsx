@@ -61,7 +61,7 @@ const Home = () => {
           className="w-full aspect-square relative rounded-[10px] overflow-hidden"
         >
           <img
-            src="/pfp.png"
+            src="/pf.png"
             alt="Profile"
             className="w-full h-full object-cover object-top"
           />
@@ -95,11 +95,11 @@ const NavigationButtons = () => {
       description: "Works that speak for themselves",
     },
     {
-      to: "/articles",
+      to: "/credentials",
       icon: (
           <Newspaper/> 
       ),
-      title: "Articles",
+      title: "Creds",
       description: "Knowledge and inspiration",
     },
   ];

@@ -15,7 +15,7 @@ export const AboutSection = ({ sectionRef }: AboutSectionProps) => (
             <div className="w-full md:w-1/3 flex justify-center">
               <div className="relative aspect-square w-full max-w-[280px] overflow-hidden rounded-[15px] border-4 border-[--surface1]">
                 <img
-                  src="/pfp.png"
+                  src="/pf.png"
                   alt="Piyush Ghanghav"
                   className="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-105"
                 />
