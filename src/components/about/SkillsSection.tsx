@@ -80,7 +80,7 @@ export const SkillsSection = () => (
             key={category.title}
             className="space-y-4"
           >
-            <h3 className="text-xl font-aldrich font-semibold text-[--text]">
+            <h3 className="text-xl font-aldrich font-semibold text-[--text-color]">
               {category.title}
             </h3>
             <div className="relative overflow-hidden">

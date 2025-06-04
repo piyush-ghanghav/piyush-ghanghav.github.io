@@ -3,7 +3,8 @@ import {
   Sparkles, 
   Newspaper, 
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import Divider from "@/components/ui/Divider";
 import { AboutIcon } from "@/components/icons/AboutIcon";
 import { GithubIcon } from "@/components/icons/GithubIcon";
@@ -13,15 +14,52 @@ import { PortfolioIcon } from "@/components/icons/PortfolioIcon";
 import { ResumeIcon } from "@/components/icons/ResumeIcon";
 
 const Home = () => {
+  const [clickCount, setClickCount] = useState(0);
+  const navigate = useNavigate();
+  
+  const REQUIRED_CLICKS = 5;
+  const CLICK_TIMEOUT = 2000;
+
+  useEffect(() => {
+    if (clickCount === REQUIRED_CLICKS) {
+      try {
+        sessionStorage.setItem('secretKey', 'piyush-secret-key');
+        navigate('/logger', { replace: true });
+        setClickCount(0);
+        console.log('Navigation triggered');
+      } catch (error) {
+        console.error('Navigation failed:', error);
+      }
+    }
+
+    const timer = setTimeout(() => {
+      if (clickCount > 0) {
+        setClickCount(0);
+      }
+    }, CLICK_TIMEOUT);
+
+    return () => clearTimeout(timer);
+  }, [clickCount, navigate]);
+
+  const handleRocketClick = () => {
+    setClickCount(prev => prev + 1);
+  };
+
   return (
-    <div className="min-h-screen w-full flex justify-center items-center gap-[80px] p-5 bg-[--base]  md:flex-row flex-col">
+    <div className="min-h-screen w-full flex justify-center items-center gap-[80px] p-5 bg-[--base] md:flex-row flex-col">
       {/* Left Section */}
       <div className="w-full max-w-[700px] space-y-6">
         {/* Header Section */}
-        <div
-          className="flex items-center gap-4"
-        >
-          <RocketIcon />
+        <div className="flex items-center gap-4">
+          <div 
+            onClick={handleRocketClick}
+            role="button"
+            tabIndex={0}
+            className="cursor-default "
+            
+          >
+            <RocketIcon />
+          </div>
           <h1 className="font-pixel font-bold text-4xl m-0 md:text-3xl sm:text-2xl text-[--text-color]">
             Hello! I'm <span className="text-[--blue]">Piyush</span>
           </h1>
@@ -32,15 +70,15 @@ const Home = () => {
           className="font-aldrich text-lg my-3 text-[--text-color]  tracking-wide"
           
         >
-          Computer engineer here - I enjoy tackling coding challenges and
+          Computer engineer here - I enjoy learning new things, staying organised and
           building things that work. What's on your mind?
         </p>
 
         <div
           className="inline-flex items-center px-3 py-2 rounded-lg gap-2 bg-gradient-to-r from-[--rosewater] via-[--blue] to-[--lavender] hover:shadow-md transition-all duration-300"
         >
-          <Sparkles className="w-6 h-6 text-white" />
-          <p className="font-pixel text-xs text-white sm:text-[15px]">
+          <Sparkles className="w-6 h-6 text-white dark:text-black" />
+          <p className="font-pixel text-xs text-white dark:text-black sm:text-[15px]">
             An absolute learner
           </p>
         </div>
@@ -97,7 +135,7 @@ const NavigationButtons = () => {
     {
       to: "/credentials",
       icon: (
-          <Newspaper/> 
+          <Newspaper strokeWidth={1.5}/> 
       ),
       title: "Creds",
       description: "Knowledge and inspiration",

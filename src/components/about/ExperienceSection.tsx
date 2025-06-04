@@ -1,5 +1,11 @@
-import type { Experience } from "./types";
-
+interface Experience {
+  title: string;
+  company: string;
+  duration: string;
+  location: string;
+  highlights: string[];
+  technologies: string[];
+}
 const experiences: Experience[] = [
   {
     title: "Semi-Finalist",
@@ -24,14 +30,14 @@ export const ExperienceSection = () => (
           className="group relative bg-[--surface0] p-6 md:p-8 rounded-[15px] border border-[--surface1] 
             hover:border-[--blue] transition-all duration-300 hover:shadow-lg"
         >
-          <div className="space-y-4">
+          <div className="space-y-4 font-aldrich">
             {/* Header */}
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+            <div className="flex flex-col font-aldrich md:flex-row md:items-center md:justify-between gap-2">
               <div>
-                <h3 className="text-xl font-semibold text-[--text]">{exp.title}</h3>
+                <h3 className="text-xl  font-semibold text-[--text-color]">{exp.title}</h3>
                 <p className="text-[--blue] font-medium">{exp.company}</p>
               </div>
-              <div className="flex items-center gap-2 text-[--subtext0]">
+              <div className="flex items-center font-aldrich gap-2 text-[--subtext0]">
                 <span className="text-sm">{exp.duration}</span>
                 <span className="text-sm">•</span>
                 <span className="text-sm">{exp.location}</span>

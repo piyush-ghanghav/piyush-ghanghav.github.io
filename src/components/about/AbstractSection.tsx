@@ -95,7 +95,7 @@ export const AbstractSection = () => (
                   href={fact.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-aldrich text-sm text-[--subtext0] hover:text-[--green] transition-colors"
+                  className="font-aldrich text-sm text-[--subtext0] hover:text-[--green1] transition-colors"
                 >
                   {fact.content}
                 </a>
