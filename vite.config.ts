@@ -8,7 +8,7 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
-  base:"/piyush.10",
+  base:"/",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
