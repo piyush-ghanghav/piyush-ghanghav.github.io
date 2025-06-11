@@ -138,7 +138,7 @@ const NavigationButtons = () => {
           <Newspaper strokeWidth={1.5}/> 
       ),
       title: "Creds",
-      description: "Knowledge and inspiration",
+      description: "Certificates, Papers, Connect",
     },
   ];
 

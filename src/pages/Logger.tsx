@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Lock, Clock, Ban, AlertCircle, Trash, User,  Globe, Timer, } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer,  } from 'recharts';
 import { SmartInsights } from '@/components/logger/SmartInsights';
+import OneCard from '@/components/ui/OneCard';
 
 interface VisitData {
   path: string;
@@ -287,7 +288,7 @@ const Logger = () => {
             </ResponsiveContainer>
           </div>
         </div>
-
+      
         {/* Visit History */}
         <div className="bg-[--surface0] rounded-xl p-6 border border-[--surface1] space-y-4">
           <div className="flex items-center justify-between">

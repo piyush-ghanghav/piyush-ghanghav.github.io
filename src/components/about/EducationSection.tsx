@@ -66,6 +66,7 @@ export const EducationSection = () => (
           </div>
         ))}
       </div>
+      
     </div>
   </section>
 );

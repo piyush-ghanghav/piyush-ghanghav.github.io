@@ -24,13 +24,13 @@ export const AboutSection = ({ sectionRef }: AboutSectionProps) => (
 
             <div className="w-full md:w-2/3 mt-5">
               <p className="text-[--text-color] text-justify">
-                I am a final-year Computer Engineering student at Sanjivani College of Engineering, Kopargaon. My main area of interest is Full Stack Development, and I also enjoy learning about Machine Learning.
+                I am a final-year Computer Engineering student at Sanjivani College of Engineering, Kopargaon. I enjoy exploring various areas in software development and continuously learning new technologies.
               </p>
               <p className="text-[--text-color] mt-4 text-justify">
                 I like building applications that are useful and reliable. I focus on writing clean and maintainable code. I take the time to understand how things work and try to improve my skills through regular practice and small projects.
               </p>
               <p className="text-[--text-color] mt-4 text-justify">
-                In my free time, I take part in coding events, work on open-source contributions, and write technical articles to share what I learn. I value working with others and believe good communication is as important as technical knowledge.
+               In my free time, I work on personal projects, explore new technologies, and play some chess. I enjoy experimenting with different tools and building small apps to sharpen my skills. I’m always looking for ways to learn more and grow as a developer.
               </p>
             </div>
           </div>
@@ -39,9 +39,10 @@ export const AboutSection = ({ sectionRef }: AboutSectionProps) => (
 
           <div className="flex flex-wrap gap-3 mt-6">
             {[
-              "Full Stack Development",
+              "Software Development",
               "Machine Learning",
               "Problem Solving",
+              "Creativity",
               "Data Structures",
               "Algorithms",
             ].map((skill) => (
