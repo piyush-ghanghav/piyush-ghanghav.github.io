@@ -1,4 +1,3 @@
-// src/pages/credentials.tsx
 import { useState } from "react";
 import { 
   Award, 
@@ -9,7 +8,7 @@ import {
 } from "lucide-react";
 import { CertificationsSection } from "@/components/credentials/CertificationsSection";
 import { PublicationsSection } from "@/components/credentials/PublicationsSection";
-import { ContactSection } from "@/components/contact/ContactSection";
+import { ContactSection } from "@/components/credentials/ContactSection";
 
 const Credentials = () => {
   const [currentIdx, setCurrentIdx] = useState(0);

@@ -1,7 +1,13 @@
-import { 
-  Code, Music, Book, Gamepad,
-   Trees, Tv, MapPin,
-  Smile, Mountain
+import {
+  Code,
+  // Music,
+  Book,
+  // Gamepad,
+  Trees,
+  Tv,
+  MapPin,
+  // Smile,
+  Mountain,
 } from "lucide-react";
 import { ChessTreeIcon } from "@/components/icons/abstract/ChessTreeIcon";
 import { FCBIcon } from "@/components/icons/abstract/FCBIcon";
@@ -11,66 +17,66 @@ const facts = [
   {
     icon: <Code className="w-6 h-6 text-[--blue]" />,
     title: "Favorite Stack",
-    content: "TypeScript, React, Node.js"
+    content: "TypeScript, React, Node.js",
   },
   {
     icon: <Book className="w-6 h-6 text-[--green]" />,
     title: "Currently Learning",
-    content: "AIML & DevOps"
+    content: "AIML & DevOps",
   },
   {
     icon: <ChessTreeIcon />,
     title: "Chess",
     content: "Play Me • 1400 ELO",
-    link: "https://www.chess.com/member/therooooksgambit" 
+    link: "https://www.chess.com/member/therooooksgambit",
   },
   {
     icon: <FCBIcon />,
     title: "Fútbol",
-        content: "FCB • Més que un club"
+    content: "FCB • Més que un club",
   },
   {
     icon: <GoatIcon />,
     title: "GOAT",
-    content: "Leo Messi • Idol "
+    content: "Leo Messi • Idol ",
   },
   {
     icon: <MapPin className="w-6 h-6 text-[--red]" />,
     title: "Dream Destination",
-    content: "Camp Nou • Barcelona"
+    content: "Camp Nou • Barcelona",
   },
-  
+
+  // {
+  //     icon: <Music className="w-6 h-6 text-[--pink]" />,
+  //     title: "Music Taste",
+  //     content: "Chill Beats "
+  //   },
   {
-      icon: <Music className="w-6 h-6 text-[--pink]" />,
-      title: "Music Taste",
-      content: "Chill Beats "
-    },
-    {
-        icon: <Tv className="w-6 h-6 text-[--teal]" />,
-        title: "Free Time",
-        content: "Code | Series | Football "
-    },
-    {
-        icon: <Gamepad className="w-6 h-6 text-[--mauve]" />,
-        title: "Gaming",
-        content: "BGMI | FC-25 "
-      },
-      {
-          icon: <Mountain className="w-6 h-6 text-[--teal]" />,
-          title: "Adventure",
-          content: "Hiking • Exploring "
-        },
-        {
-          icon: <Trees className="w-6 h-6 text-[--green]" />,
-          title: "Green Thumb",
-                content: "Gardening • My zen time"
-        },
-        
+    icon: <Tv className="w-6 h-6 text-[--teal]" />,
+    title: "Free Time",
+    content: "Code | Series | Football ",
+  },
+  // {
+  //     icon: <Gamepad className="w-6 h-6 text-[--mauve]" />,
+  //     title: "Gaming",
+  //     content: "BGMI | FC-25 "
+  //   },
   {
-    icon: <Smile className="w-6 h-6 text-[--yellow]" />,
-    title: "Fun Fact",
-    content: "Can solve Rubik's cube"
-  }
+    icon: <Mountain className="w-6 h-6 text-[--teal]" />,
+    title: "Adventure",
+    content: "Hiking • Exploring ",
+  },
+  {
+    icon: <Trees className="w-6 h-6 text-[--green]" />,
+    title: "Green Thumb",
+    content: "Gardening • My zen time",
+  },
+
+  // {
+  //   icon: <Smile className="w-6 h-6 text-[--yellow]" />,
+  //   title: "Fun Fact",
+  //   content: "Can solve Rubik's cube"
+  // }
 ];
 
 export const AbstractSection = () => (
@@ -91,7 +97,7 @@ export const AbstractSection = () => (
                 {fact.title}
               </h3>
               {fact.link ? (
-                <a 
+                <a
                   href={fact.link}
                   target="_blank"
                   rel="noopener noreferrer"

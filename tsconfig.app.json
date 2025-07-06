@@ -27,5 +27,5 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src", ".vscode/navigation"]
+  "include": ["src", ".vscode/navigation", "favicon/Contact.tsx"]
 }

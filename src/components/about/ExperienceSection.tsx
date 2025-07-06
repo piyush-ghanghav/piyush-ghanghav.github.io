@@ -1,6 +1,3 @@
-import { useState } from "react";
-// import { Award, MapPin, Star, Calendar } from "lucide-react";
-import OneCard from "@/components/ui/OneCard";
 
 interface Experience {
   title: string;
@@ -26,7 +23,6 @@ const experiences: Experience[] = [
 ];
 
 export const ExperienceSection = () => {
-  const [showCard, setShowCard] = useState(false);
 
   return (
     <section className="mb-16">
@@ -80,23 +76,11 @@ export const ExperienceSection = () => {
                 </div>
               )}
             </div>
-
-            {/* Add OneCard Button */}
-            <div className="absolute top-4 right-4">
-              <button
-                onClick={() => setShowCard(true)}
-                className="px-3 py-1.5 text-sm bg-[--surface1] text-[--text] rounded-lg 
-                  hover:bg-[--surface2] transition-all duration-300"
-              >
-                View Details
-              </button>
-            </div>
           </div>
         ))}
       </div>
 
-      {/* Render OneCard */}
-      {showCard && <OneCard />}
+
     </section>
   );
 };

@@ -1,6 +1,18 @@
 import { SkillCard } from "./SkillCard";
 import { ProfileBadge } from "./ProfileBadge";
-import type { CodingProfile, SkillCategory } from "./types";
+export interface CodingProfile {
+  platform: string;
+  link: string;
+  badge: string;
+}
+
+export interface SkillCategory {
+  title: string;
+  skills: Array<{
+    id: string;
+    title: string;
+  }>;
+}
 
 const codingProfiles: CodingProfile[] = [
   {
@@ -71,19 +83,19 @@ const skillCategories: SkillCategory[] = [
 ];
 
 export const SkillsSection = () => (
-  <section className="mb-16 space-y-12">
+  <section className="mt-0">
     {/* Skills Container */}
     <div className="relative bg-[--surface0] p-6 md:p-8 rounded-[15px] border border-[--surface1] pt-6">
-      <div className="space-y-6">
+      <div className="">
         {skillCategories.map((category, idx) => (
           <div
             key={category.title}
-            className="space-y-4"
+            className={idx < skillCategories.length - 1 ? "mb-2" : ""}
           >
-            <h3 className="text-xl font-aldrich font-semibold text-[--text-color]">
+            <h3 className="text-xl font-aldrich font-semibold text-[--text-color] mb-4">
               {category.title}
             </h3>
-            <div className="relative overflow-hidden">
+            <div className="relative overflow-hidden pb-8 mb-0">
               <div
                 className={`flex gap-4 animate-scroll${idx % 2 ? "-reverse" : ""}`}
                 style={{
@@ -91,10 +103,18 @@ export const SkillsSection = () => (
                 }}
               >
                 {[...category.skills, ...category.skills].map((skill, skillIndex) => (
-                  <SkillCard
-                    key={`${skill.id}-${skillIndex}`}
-                    skill={skill}
-                  />
+                  <div key={`${skill.id}-${skillIndex}`} className="relative group/skill">
+                    <SkillCard skill={skill} />
+                    {/* Tooltip */}
+                    <div className="absolute -bottom-7 left-1/2 -translate-x-1/2 opacity-0 group-hover/skill:opacity-100 transition-all duration-300 z-[100] pointer-events-none">
+                      <div className="relative">
+                        <div className="bg-[--surface1] px-2 py-1 rounded-lg border border-[--surface2] text-xs font-aldrich text-[--text] whitespace-nowrap z-[150]    ">
+                          {skill.title}
+                        </div>
+                        <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 border-8 border-transparent border-t-[--surface1]" />
+                      </div>
+                    </div>
+                  </div>
                 ))}
               </div>
 
@@ -106,7 +126,7 @@ export const SkillsSection = () => (
         ))}
       </div>
 
-      <div className="border-t border-[--surface1] my-6" />
+      <div className="border-t border-[--surface1] mb-6" />
 
       {/* Coding Profiles with Tooltips */}
       <div className="flex flex-wrap items-center justify-center gap-4">

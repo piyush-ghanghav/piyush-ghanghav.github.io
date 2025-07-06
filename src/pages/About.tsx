@@ -3,13 +3,11 @@ import { useState, } from "react";
 import { 
   User, 
   GraduationCap, 
-  Briefcase, 
+  // Briefcase, 
   Library, 
   FileText,
-  ChevronLeft, 
-  ChevronRight 
 } from "lucide-react";
-import { ExperienceSection } from "@/components/about/ExperienceSection";
+// import { ExperienceSection } from "@/components/about/ExperienceSection";
 import { EducationSection } from "@/components/about/EducationSection";
 import { SkillsSection } from "@/components/about/SkillsSection";
 import { AboutSection } from "@/components/about/AboutSection";
@@ -34,11 +32,11 @@ const About = () => {
       label: "Education", 
       icon: <GraduationCap className="w-5 h-5" fill="currentColor" strokeWidth={1.5} />
     },
-    { 
-      id: "experience", 
-      label: "Experience", 
-      icon: <Briefcase className="w-5 h-5" fill="currentColor" strokeWidth={1.5} />
-    },
+    // { 
+    //   id: "experience", 
+    //   label: "Experience", 
+    //   icon: <Briefcase className="w-5 h-5" fill="currentColor" strokeWidth={1.5} />
+    // },
     { 
       id: "skills", 
       label: "Stack & Profiles", 
@@ -55,7 +53,7 @@ const About = () => {
     about: AboutSection,
     abstract: AbstractSection,
     education: EducationSection,
-    experience: ExperienceSection,
+    // experience: ExperienceSection,
     skills: SkillsSection,
   };
 
@@ -103,28 +101,6 @@ const About = () => {
 
       {/* Main Content with Side Navigation */}
       <div className="container mx-auto px-4 py-8 relative">
-        {/* Left Navigation */}
-        <button
-          onClick={() => setCurrentIdx(prev => Math.max(prev - 1, 0))}
-          disabled={currentIdx === 0}
-          className="fixed left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-[--surface0]/80 
-            backdrop-blur-md border border-[--surface1] text-[--text] hover:bg-[--surface1] 
-            disabled:opacity-50 transition-all hover:shadow-md hidden md:block"
-        >
-          <ChevronLeft className="w-6 h-6" />
-        </button>
-
-        {/* Right Navigation */}
-        <button
-          onClick={() => setCurrentIdx(prev => Math.min(prev + 1, sections.length - 1))}
-          disabled={currentIdx === sections.length - 1}
-          className="fixed right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-[--surface0]/80 
-            backdrop-blur-md border border-[--surface1] text-[--text] hover:bg-[--surface1] 
-            disabled:opacity-50 transition-all hover:shadow-md hidden md:block"
-        >
-          <ChevronRight className="w-6 h-6" />
-        </button>
-
         {/* Content with Touch Events */}
         <div 
           className="max-w-[700px] lg:max-w-[1000px] mx-auto"

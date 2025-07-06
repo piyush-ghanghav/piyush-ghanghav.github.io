@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { 
-  Sparkles, 
   Newspaper, 
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
@@ -70,18 +69,15 @@ const Home = () => {
           className="font-aldrich text-lg my-3 text-[--text-color]  tracking-wide"
           
         >
-          Computer engineer here - I enjoy learning new things, staying organised and
-          building things that work. What's on your mind?
+         I enjoy learning new things, staying organised and exploring tech, ideas, and whatever grabs my curiosity.
         </p>
 
-        <div
+        {/* <div
           className="inline-flex items-center px-3 py-2 rounded-lg gap-2 bg-gradient-to-r from-[--rosewater] via-[--blue] to-[--lavender] hover:shadow-md transition-all duration-300"
         >
           <Sparkles className="w-6 h-6 text-white dark:text-black" />
-          <p className="font-pixel text-xs text-white dark:text-black sm:text-[15px]">
-            An absolute learner
-          </p>
-        </div>
+          
+        </div> */}
 
         <Divider className="my-4" />
         <NavigationButtons />
@@ -99,9 +95,9 @@ const Home = () => {
           className="w-full aspect-square relative rounded-[10px] overflow-hidden"
         >
           <img
-            src="/pf.png"
+            src="/pfp1.png"
             alt="Profile"
-            className="w-full h-full object-cover object-top"
+            className="w-full h-full object-fill"
           />
         </motion.div>
 
@@ -130,7 +126,7 @@ const NavigationButtons = () => {
           <PortfolioIcon />
       ),
       title: "Portfolio",
-      description: "Works that speak for themselves",
+      description: "Opening lines are overrated—so here’s the work.",
     },
     {
       to: "/credentials",

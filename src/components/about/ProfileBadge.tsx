@@ -1,5 +1,10 @@
 import { motion } from "framer-motion";
-import type { CodingProfile } from "./types";
+export interface CodingProfile {
+  platform: string;
+  link: string;
+  badge: string;
+}
+
 
 export const ProfileBadge = ({ profile, index }: { profile: CodingProfile; index: number }) => (
   <motion.div className="group/profile relative">
@@ -16,7 +21,7 @@ export const ProfileBadge = ({ profile, index }: { profile: CodingProfile; index
       <img
         src={profile.badge}
         alt={profile.platform}
-        className="h-8" // Reduced from h-10
+        className="h-8"
         loading="lazy"
       />
     </motion.a>
