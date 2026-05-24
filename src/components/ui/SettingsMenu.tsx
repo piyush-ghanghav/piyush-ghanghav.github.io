@@ -1,12 +1,31 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
-
 import { Link } from 'react-router-dom';
 import { ThemeToggle } from '../ThemeToggle';
 import { HomeIcon } from '../icons/HomeIcon';
 
 const SettingsMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    // wait 1 second, then open smoothly
+    const openTimer = setTimeout(() => {
+      requestAnimationFrame(() => {
+        setIsOpen(true); // smooth open
+      });
+
+      // close after 3 seconds
+      const closeTimer = setTimeout(() => {
+        requestAnimationFrame(() => {
+          setIsOpen(false); // smooth close
+        });
+      }, 3000);
+
+      return () => clearTimeout(closeTimer);
+    }, 1000);
+
+    return () => clearTimeout(openTimer);
+  }, []);
 
   return (
     <div 
@@ -34,35 +53,32 @@ const SettingsMenu = () => {
         />
       </button>
 
-      {/* Settings Buttons */}
-              
-                          {/* Theme Toggle Container */}
-                          <div className="
-                            w-[50px] h-[50px] 
-                            bg-[--surface1] rounded-[10px]
-                            flex items-center justify-center
-                            hover:bg-[--surface2] transition-colors
-                          ">
-                            <ThemeToggle />
-                          </div>
-        {isOpen && (
-          <div
-            className="flex flex-col gap-[5px] w-full px-[5px]"
+      {/* Theme Toggle */}
+      <div className="
+        w-[50px] h-[50px] 
+        bg-[--surface1] rounded-[10px]
+        flex items-center justify-center
+        hover:bg-[--surface2] transition-colors
+      ">
+        <ThemeToggle />
+      </div>
+
+      {isOpen && (
+        <div className="flex flex-col gap-[5px] w-full px-[5px]">
+          <Link
+            to="/"
+            className="
+              w-[50px] h-[50px] 
+              bg-[--surface1] rounded-[10px]
+              flex items-center justify-center
+              hover:bg-[--surface2] transition-colors
+            "
+            onClick={() => setIsOpen(false)}
           >
-            {/* Home Button */}
-            <Link
-              to="/"
-              className="
-                w-[50px] h-[50px] 
-                bg-[--surface1] rounded-[10px]
-                flex items-center justify-center
-                hover:bg-[--surface2] transition-colors
-              "
-            >
-              <HomeIcon/>
-            </Link>
-          </div>
-        )}
+            <HomeIcon/>
+          </Link>
+        </div>
+      )}
     </div>
   );
 };

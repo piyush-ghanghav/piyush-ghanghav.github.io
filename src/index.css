@@ -119,20 +119,30 @@
     --chart-5: 340 75% 55%;
 
     /* Catppuccin Dark Theme Overrides */
+    --bg-color: #2C2C2C;
+    /* --sbg1-color: #313244; */
+    /* --sbg2-color: #45475a; */
+    --text-color: #EFF1F5;
+    --button-color: #B39CD0;
+    --button-text-color: #EFF1F5;
+/* 
+   //  Catppuccin Dark Theme Overrides 
     --bg-color: #1e1e2e;
     --sbg1-color: #313244;
     --sbg2-color: #45475a;
-    --text-color: #cdd6f4;
+    --text-color: #5fd2d2;
     --button-color: #11111b;
-    --button-text-color: #EFF1F5;
+    --button-text-color: #EFF1F5; 
+  */
 
     /* Catppuccin Mocha (Dark) Theme Colors */
-    --base: #1e1e2e;
+    --base: #2C2C2C;
+    /* --base: #1e1e2e; */
     --crust: #11111b;
     --mantle: #181825;
-    --surface0: #313244;
-    --surface1: #45475a;
-    --surface2: #585b70;
+    --surface0: #4e4d4d;
+    --surface1: #585858;
+    --surface2: #414040;
     --text: #cdd6f4;
     --subtext0: #a6adc8;
     --subtext1: #bac2de;

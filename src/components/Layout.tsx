@@ -6,7 +6,7 @@ const Layout = () => {
     <div className="min-h-screen bg-[--base] font-inter relative smooth-scroll">
       <SettingsMenu />
       <main>
-        <div
+        <div className='ml-20'
         >
           <Outlet />
         </div>

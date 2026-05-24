@@ -101,7 +101,7 @@ const Home = () => {
           />
         </motion.div>
 
-        <Link to="/Piyush_Ghanghav_Resume.pdf" className={buttonStyles.resume}>
+        <Link to="/resume" className={buttonStyles.resume}>
           <ResumeIcon />
           <span className="truncate">Resume</span>
         </Link>
@@ -154,22 +154,22 @@ const SocialLinks = () => {
       icon: <GithubIcon />,
     },
     {
-      href: "https://linkedin.com/in/piyush-ghanghav",
+      href: "https://leetcode.com/piyush10_",
       icon: (
         <img 
-          src={`https://skillicons.dev/icons?i=linkedin&theme=light`}
-          alt="LinkedIn"
-          className="w-10 h-10 transition-transform duration-300 hover:scale-110"
+          src='src/components/icons/png/leet.png'
+          alt="LeetCode"
+          className="w-9 h-9 transition-transform duration-300 hover:scale-110"
         />
       ),
     },
     {
-      href: "mailto:piyushghanghav@gmail.com",
+      to:"/contact",
       icon: (
         <img 
-          src={`https://skillicons.dev/icons?i=gmail&theme=light`}
-          alt="Gmail"
-          className="w-10 h-10 transition-transform duration-300 hover:scale-110"
+          src="src/components/icons/png/mail.png"
+          alt="Mail"
+          className="w-9 h-10 transition-transform duration-300 hover:scale-110"
         />
       ),
     },
@@ -184,7 +184,7 @@ const SocialLinks = () => {
   );
 };
 
-// Update NavButton to support hover animations
+
 type NavButtonProps = {
   to: string;
   icon: React.ReactNode;
@@ -193,8 +193,9 @@ type NavButtonProps = {
 };
 
 type SocialButtonProps = {
-  href: string;
   icon: React.ReactNode;
+  href?: string;
+  to?: string;
 }
 const NavButton = ({ to, icon, title, description }: NavButtonProps) => (
   <Link
@@ -214,17 +215,29 @@ const NavButton = ({ to, icon, title, description }: NavButtonProps) => (
   </Link>
 );
 
-// Update SocialButton to handle hover effects
-const SocialButton = ({ href, icon }: SocialButtonProps) => (
-  <a
-    href={href}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="group transition-transform hover:-translate-y-1"
-  >
-    {icon}
-  </a>
-);
+const SocialButton = ({ href, to, icon }: SocialButtonProps) => {
+  if (to) {
+    return (
+      <Link
+        to={to}
+        className={`${buttonStyles.social} group `}
+      >
+        {icon}
+      </Link>
+    );
+  }
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+       className={`${buttonStyles.social} group`}
+    >
+      {icon}
+    </a>
+  );
+};
 
 // Centralized Button Styles
 const buttonStyles = {
@@ -259,7 +272,7 @@ const buttonStyles = {
   `,
   social: `
     flex items-center justify-center w-[50px] h-[50px] rounded-[10px] 
-    bg-[--surface0] hover:bg-[--surface1] transition-all border border-[--surface1]
+    bg-[--surface1] border border-[--surface1]
   `,
   resume: `
     w-full h-[90px] md:h-[70px] sm:h-[60px] flex items-center justify-center gap-3 
