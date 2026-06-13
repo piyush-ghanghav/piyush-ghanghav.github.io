@@ -1,18 +1,15 @@
 import { Outlet } from 'react-router-dom';
-import SettingsMenu from './ui/SettingsMenu';
-
-const Layout = () => {
-  return (
-    <div className="min-h-screen bg-[--base] font-inter relative smooth-scroll">
-      <SettingsMenu />
-      <main>
-        <div className='ml-20'
-        >
-          <Outlet />
-        </div>
-      </main>
-    </div>
-  );
-};
-
+import Navbar from './Navbar';
+import Footer from './Footer';
+ 
+const Layout = () => (
+  <div className="min-h-screen bg-bg flex flex-col">
+    <Navbar />
+    <main className="pt-16 flex-1">
+      <Outlet />
+    </main>
+    <Footer />
+  </div>
+);
+ 
 export default Layout;
