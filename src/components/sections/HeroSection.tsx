@@ -100,7 +100,8 @@ const HeroSection = () => {
           animate="visible"
         >
           <span className="section-label">
-            Programmer Analyst Trainee · Cognizant
+            Computer Engineer 
+            {/* Programmer Analyst Trainee · Cognizant */}
           </span>
         </motion.div>
 

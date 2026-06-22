@@ -20,16 +20,16 @@ interface TimelineItem {
 // ─── Data ─────────────────────────────────────────────────────
 
 const TIMELINE: TimelineItem[] = [
-  {
-    type:        'work',
-    title:       'Programmer Analyst Trainee',
-    subtitle:    'Offer letter received · Joining TBD',
-    institution: 'Cognizant Technology Solutions',
-    location:    'India',
-    period:      '2025 →',
-    highlight:   'Incoming · GENC PAT',
-    tags:        ['Software Engineering', 'Full Stack'],
-  },
+  // {
+  //   type:        'work',
+  //   title:       'Programmer Analyst Trainee',
+  //   subtitle:    'Offer letter received · Joining TBD',
+  //   institution: 'Cognizant Technology Solutions',
+  //   location:    'India',
+  //   period:      '2025 →',
+  //   highlight:   'Incoming · GENC PAT',
+  //   tags:        ['Software Engineering', 'Full Stack'],
+  // },
   {
     type:        'achievement',
     title:       'IEEE Research Publication',
@@ -255,11 +255,11 @@ const TimelineEntry = ({
 // Pulled from TIMELINE — no new data needed.
 
 const SNAPSHOT = [
-  {
-    type:  'work'        as TimelineItemType,
-    title: 'Programmer Analyst Trainee',
-    sub:   'Cognizant Technology Solutions',
-  },
+  // {
+  //   type:  'work'        as TimelineItemType,
+  //   title: 'Programmer Analyst Trainee',
+  //   sub:   'Cognizant Technology Solutions',
+  // },
   {
     type:  'achievement' as TimelineItemType,
     title: 'IEEE Published',

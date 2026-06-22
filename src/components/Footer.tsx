@@ -28,7 +28,7 @@ const SOCIALS = [
   },
   {
     label: 'LeetCode',
-    href:  'https://leetcode.com/piyushghanghav',
+    href:  'https://leetcode.com/piyush10_',
     icon:  <LeetCodeIcon />,
   },
 ];
